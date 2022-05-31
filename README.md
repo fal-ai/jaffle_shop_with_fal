@@ -1,8 +1,8 @@
-## How to use fal cli
+## jaffle_shop + fal cli
 
-This instance of the jaffle shop project, showcases a fal script that downloads selected dbt models as parquet files locally using the fal cli.
+This instance of the jaffle shop project, showcases a `fal` script that downloads selected dbt models as parquet files locally using the fal cli.
 
-Inspired by the slack thread at the #duck-db channel.
+Inspired by the [slack thread](https://getdbt.slack.com/archives/C039D1J1LA2/p1649536829350429) at the #duck-db channel.
 
 ### Instructions to run the project locally:
 
@@ -10,22 +10,20 @@ Inspired by the slack thread at the #duck-db channel.
 pip install fal
 ```
 
-// seeds data into the database
-
 ```
+# seeds data into the database
 dbt seed
 ```
 
-// customers and orders dbt models are written as parquet files
-
 ```
+# customers and orders dbt models are written as parquet files
 fal flow run
 ```
 
 output:
 
 ```
-(fal-3vP5iebW-py3.8) ➜  jaffle_shop_with_fal git:(fal_parquet) fal flow run
+>> fal flow run
 15:04:55  Found 5 models, 20 tests, 0 snapshots, 0 analyses, 188 macros, 0 operations, 3 seed files, 0 sources, 0 exposures, 0 metrics
 Executing command: dbt --log-format json run --project-dir /Users/gorkemyurtseven/dev/fal_ai_jaffle_shop_parquet/jaffle_shop_with_fal --select orders customers raw_customers stg_customers raw_orders raw_payments stg_payments stg_orders
 Running with dbt=1.0.0
@@ -53,16 +51,16 @@ Wrote contents of customers dbt model to /Users/gorkemyurtseven/.fal/customers.p
 Wrote contents of orders dbt model to /Users/gorkemyurtseven/.fal/orders.parquet
 ```
 
-If you want to download more dbt models as parquet files you will have to add the following block of configuration under the model in the schema.yml file:
+If you want to download more dbt models as parquet files you will have to add the following block of configuration under the desired model in the `schema.yml` file:
 
 ```
 meta:
-    fal:
+  fal:
     scripts:
-        after:
-            - model_to_parquet.py
+      after:
+        - model_to_parquet.py
 ```
-
+---
 ## Testing dbt project: `jaffle_shop`
 
 `jaffle_shop` is a fictional ecommerce store. This dbt project transforms raw data from an app database into a customers and orders model ready for analytics.
