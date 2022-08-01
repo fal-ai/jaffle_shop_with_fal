@@ -14,6 +14,9 @@ km_2 = KModes(n_clusters=3, init="Huang")
 km_2.fit_predict(df_train)
 df["cluster_label"] = km_2.labels_
 
+# Hack: postgres adapter doesn't handle dates very well
+df['order_date'] = df['order_date'].astype(str)
+
 print(df)
 
 write_to_model(df, mode="overwrite")
