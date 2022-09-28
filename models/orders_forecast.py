@@ -21,6 +21,7 @@ def make_forecast(dataframe: pd.DataFrame, periods: int = 30):
 def model(dbt, fal):
     df: pd.DataFrame = dbt.ref("orders_daily")
 
+    df.columns = df.columns.str.upper()  # Capitalize to make sure Snowflake works
     df_count = df[["ORDER_DATE", "ORDER_COUNT"]]
     df_count = df_count.rename(columns={"ORDER_DATE": "ds", "ORDER_COUNT": "y"})
     model_count, forecast_count = make_forecast(df_count, 50)
