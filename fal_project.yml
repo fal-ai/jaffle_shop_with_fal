@@ -1,16 +1,7 @@
-runtime:
-  api: "{{ env_var('FAL_RUNTIME_URL') }}"
-  bucket: "{{ env_var('FAL_JOBS_BUCKET') }}"
 environments:
-  - name: prophet
-    size: SMALL
+  - name: forecast
     requirements:
-      - cython==0.29.21
-      - pystan==2.19.1.1
-      - prophet==1.1
-    system-requirements:
-      - build-essential
-  - name: kmodes
-    size: SMALL
+      - prophet==1.1.1
+  - name: cluster
     requirements:
       - kmodes==0.12.1
