@@ -19,4 +19,3 @@ WITH order_attributes AS (
 )
 
 SELECT * FROM final
-

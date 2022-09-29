@@ -8,6 +8,7 @@ from kmodes.kmodes import KModes
 
 
 def model(dbt, session):
+    dbt.config(fal_environment="cluster")
     df: pd.DataFrame = dbt.ref("order_detailed")
     df_train = df[["size", "is_vegan", "is_vegetarian", "is_keto", "shape"]]
 

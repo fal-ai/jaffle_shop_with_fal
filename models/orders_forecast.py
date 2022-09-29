@@ -20,6 +20,7 @@ def make_forecast(dataframe: pd.DataFrame, periods: int = 30):
     return forecast
 
 def model(dbt, session):
+    dbt.config(fal_environment="forecast")
 
     df: pd.DataFrame = dbt.ref("orders_daily")
 
