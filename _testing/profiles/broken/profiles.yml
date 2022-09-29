@@ -1,0 +1,29 @@
+config:
+  send_anonymous_usage_stats: False
+
+fal_test:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      user: broken
+      password: pass
+      port: 5433
+      dbname: test
+      schema: dbt_fal
+      threads: 4
+      python_adapter:
+        type: fal
+
+    custom:
+      type: postgres
+      host: localhost
+      user: pguser
+      password: pass
+      port: 5432
+      dbname: test
+      schema: dbt_fal
+      threads: 4
+      python_adapter:
+        type: fal
