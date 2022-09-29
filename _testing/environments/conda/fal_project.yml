@@ -1,0 +1,5 @@
+environments:
+  - name: ml
+    type: conda
+    packages:
+      - prophet=1.0
