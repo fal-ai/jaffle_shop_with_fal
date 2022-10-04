@@ -37,6 +37,8 @@ def model(dbt, fal):
         rsuffix="_AMOUNT",
     )
 
+    joined_forecast.columns = joined_forecast.columns.str.lower() # for duckdb
+
     # HACK: have to figure out how to write dates (or datetimes) to the database
     # TODO: The types.DATE did not work when testing for `dtype={"ds": types.DATE}`
     joined_forecast["ds"] = joined_forecast["ds"].map(lambda x: x.strftime("%Y-%m-%d"))
