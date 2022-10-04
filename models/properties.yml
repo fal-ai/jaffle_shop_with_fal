@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: orders_forecast
+    config:
+      fal_environment: ml
