@@ -1,6 +1,8 @@
 import pandas as pd
+import os
 
 def model(dbt, session) -> pd.DataFrame:
     dbt.config(materialized="table")
-    df = pd.read_json("http://35.193.199.9/api/orders", orient="records")
+    url = f"http://{os.environ['JAFFLE_SHOP_HOSTNAME']}/api/orders"
+    df = pd.read_json(url, orient="records")
     return df
