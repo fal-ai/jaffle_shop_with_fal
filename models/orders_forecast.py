@@ -19,6 +19,10 @@ def make_forecast(dataframe: pd.DataFrame, periods: int = 30):
 
 
 def model(dbt, fal):
+    dbt.config(fal_environment="ml")
+    dbt.config(materialized="fal_table")
+
+    
     df: pd.DataFrame = dbt.ref("orders_daily")
 
     df.columns = df.columns.str.upper()  # Capitalize to make sure Snowflake works

@@ -1,0 +1,8 @@
+environments:
+  - name: ml
+    type: venv
+    requirements:
+      - prophet
+      - pyjokes
+      - emoji
+      - django
