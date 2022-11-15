@@ -2,6 +2,11 @@ version: 2
 
 models:
   - name: customers
+    meta:
+      fal:
+        scripts:
+          - fal_scripts/notify.py
+
     description: This table has basic information about a customer, as well as some derived facts based on a customer's orders
 
     columns:
@@ -54,7 +59,8 @@ models:
         description: '{{ doc("orders_status") }}'
         tests:
           - accepted_values:
-              values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+              values:
+                ["placed", "shipped", "completed", "return_pending", "returned"]
 
       - name: amount
         description: Total amount (AUD) of the order
