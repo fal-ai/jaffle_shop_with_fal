@@ -1,7 +1,6 @@
 import pandas as pd
 from kmodes.kmodes import KModes
 
-
 def model(dbt, fal):
     df: pd.DataFrame = dbt.ref("order_detailed")
     df_train = df[["size", "is_vegan", "is_vegetarian", "is_keto", "shape"]]
