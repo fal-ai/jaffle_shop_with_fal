@@ -46,14 +46,6 @@ models:
   - name: orders_daily
     description: This table has aggregate data about orders and the detailed attributes, it is aggregated on date
 
-  - name: orders_forecast
-    description: fal generated table with orders forecast
-    meta:
-      fal:
-        runtime: prophet
-
-  - name: orders_forecast_filter
-
   - name: orders
     description: This table has basic information about orders, as well as some derived facts based on payments
 
