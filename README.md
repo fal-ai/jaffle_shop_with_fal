@@ -4,19 +4,26 @@ It is year 2 for our [jaffle shop](https://github.com/dbt-labs/jaffle_shop) and 
 
 We are tasked to understand what kind of jaffles we make the most money from.
 
-So we decided to run a [clustering algorithm](https://github.com/fal-ai/jaffle_shop_with_fal/blob/main/clustering.py) to separate the orders into 3 different clusters and then to calculate all the [revenue for each cluster](https://github.com/fal-ai/jaffle_shop_with_fal/blob/main/models/cluster_stats.sql).
+So we decided to run a [clustering algorithm](https://github.com/fal-ai/jaffle_shop_with_fal/blob/main/clustering.py) to separate the orders into 3 different clusters and then to calculate all the [revenue for each cluster](https://github.com/fal-ai/jaffle_shop_with_fal/blob/main/models/cluster_stats.sql). Once our clustering algorithm is done, we want to send a notification to a Slack channel notifying our team that the results are ready for viewing.
 
-[Fal](https://github.com/fal-ai/fal) is the perfect tool for the task at hand, by using the [`fal flow`](https://blog.fal.ai/python-or-sql-why-not-both/) command, we can run our clustering python script in the middle of 2 dbt models.
+The [fal](https://github.com/fal-ai/fal) + [dbt-fal](https://github.com/fal-ai/fal/tree/main/adapter) combination is the perfect tool for the task at hand:
+
+- Using the `dbt-fal` adapter, we can iterate on and ship our clustering algorithm written in Python with any datawarehouse **right within our dbt project.**
+
+- Using the `fal flow` CLI command, we can send a Slack notification to notify our team.
+
+With this combo, you won't to leave your dbt project while still bringing more capabilities to your stack.
 
 ### Installing Instructions:
 
-1. Install fal
+1. Install `fal` and `dbt-fal`
 
 ```
-$ pip install fal
+$ pip install fal dbt-fal[duckdb, postgres, redshift, bigquery]
+# Add your favorite adapter here
 ```
 
-2. Install KModes to run the clustering script.
+2. Install the data science libraries to run the clustering script.
 
 ```
 $ pip install kmodes convertdate pystan prophet plotly kaleido
@@ -30,16 +37,16 @@ $ dbt seed
 
 ### Running Instructions:
 
-Run fal flow
+1. Run `dbt run`
 
 ```bash
-$ fal flow run --experimental-models
-## runs the whole graph
+$ dbt run
+## Runs the whole graph including the Python models
 ```
 
-Alternatively run fal flow with [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators)
+2. Run `fal flow` to execute the full graph including Python scripts. You can use the [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/).
 
 ```bash
-$ fal flow run --experimental-models --select order_detailed_cluster.py+
-## runs order_detailed_cluster.py and cluster_stats.sql
+$ fal flow run
+## Runs dbt run and the associated scripts, in this case a Slack notification is triggered
 ```
