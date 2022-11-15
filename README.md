@@ -44,9 +44,15 @@ $ dbt run
 ## Runs the whole graph including the Python models
 ```
 
-2. Run `fal flow` to execute the full graph including Python scripts. You can use the [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/).
+2. Run `fal flow` to execute the full graph including Python scripts. You can use the dbt [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/).
 
 ```bash
 $ fal flow run
 ## Runs dbt run and the associated scripts, in this case a Slack notification is triggered
 ```
+
+### Curious to learn more?
+
+If you would like to learn more about managing multiple environments for Python models and more, check out the [docs](https://docs.fal.ai)!
+
+Or say hi 👋 in the [#tools-fal](https://getdbt.slack.com/archives/C02V8QW3Q4Q) Slack channel.
