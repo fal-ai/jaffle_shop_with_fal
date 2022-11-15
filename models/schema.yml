@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: orders_forecast_filter
-    descripton: This table has the forecasting
+  - name: cluster_stats
+    descripton: This table stores the cluster statistics
     meta:
       fal:
         scripts:
