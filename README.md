@@ -8,9 +8,9 @@ So we decided to run a [clustering algorithm](https://github.com/fal-ai/jaffle_s
 
 The [fal](https://github.com/fal-ai/fal) + [dbt-fal](https://github.com/fal-ai/fal/tree/main/adapter) combination is the perfect tool for the task at hand:
 
-- `dbt-fal` adapter lets us iterate on and ship our clustering algorithm. We wrote it as a Python models that works with any data warehouse **right within our dbt project.**
+- `dbt-fal` adapter lets us iterate on and ship our clustering algorithm **right within our dbt project**. This Python model works with any data warehouse, including ones without dbt Python support such as Postgres and Redshift. For Bigquery, it makes it easier to run Python models without having to stand up a Dataproc cluster.
 
-- `fal flow` CLI command lets us send a Slack notification, via a Python post-hook.
+- `fal flow` CLI command lets us send a Slack notification, via a Python post-hook. We could also execute any arbitrary Python here, for example to push data to external services.
 
 With this combo, you won't have to leave your dbt project and still add more capabilities to your stack.
 
@@ -44,7 +44,7 @@ $ dbt run
 ## Runs the whole graph including the Python models
 ```
 
-2. Run `fal flow` to execute the full graph including Python scripts. You can use the dbt [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/).
+2. Run `fal flow` to execute the full graph including Python scripts. You can use the dbt [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/). With `fal flow`, you will not have to run `dbt run` since fal handles the full execution.
 
 ```bash
 $ fal flow run
