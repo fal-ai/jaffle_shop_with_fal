@@ -10,7 +10,7 @@ The [fal](https://github.com/fal-ai/fal) + [dbt-fal](https://github.com/fal-ai/f
 
 - `dbt-fal` adapter lets us iterate on and ship our clustering algorithm. We wrote it as a Python models that works with any data warehouse **right within our dbt project.**
 
-- Using the `fal flow` CLI command, we can send a Slack notification to notify our team.
+- `fal flow` CLI command lets us send a Slack notification, via a Python post-hook.
 
 With this combo, you won't to leave your dbt project while still bringing more capabilities to your stack.
 
