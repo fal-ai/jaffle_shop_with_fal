@@ -12,7 +12,7 @@ The [fal](https://github.com/fal-ai/fal) + [dbt-fal](https://github.com/fal-ai/f
 
 - `fal flow` CLI command lets us send a Slack notification, via a Python post-hook.
 
-With this combo, you won't to leave your dbt project while still bringing more capabilities to your stack.
+With this combo, you won't have to leave your dbt project and still add more capabilities to your stack.
 
 ### Installing Instructions:
 
