@@ -5,7 +5,7 @@ models:
     descripton: This table stores the cluster statistics
     meta:
       fal:
-        scripts:
+        post-hook:
           - fal_scripts/notify.py
 
   - name: customers

@@ -19,7 +19,7 @@ With this combo, you won't have to leave your dbt project and still add more cap
 1. Install `fal` and `dbt-fal`
 
 ```
-$ pip install fal dbt-fal[duckdb, postgres, redshift, bigquery]
+$ pip install fal dbt-fal[duckdb]
 # Add your favorite adapter here
 ```
 
@@ -44,7 +44,7 @@ $ dbt run
 ## Runs the whole graph including the Python models
 ```
 
-2. Run `fal flow` to execute the full graph including Python scripts. You can use the dbt [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/). With `fal flow`, you will not have to run `dbt run` since fal handles the full execution.
+2. Run `fal flow run` to execute the full graph including Python scripts. You can use the dbt [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/). With `fal flow run`, you will not have to run `dbt run` since fal handles the full execution.
 
 ```bash
 $ fal flow run
