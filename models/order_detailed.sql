@@ -3,7 +3,7 @@ WITH order_attributes AS (
     SELECT *
     FROM {{ ref('stg_order_attributes') }}
 
-), orders AS (
+), orders_tbl AS (
 
     SELECT *
     FROM {{ ref('orders') }}
@@ -13,10 +13,9 @@ WITH order_attributes AS (
     SELECT *
     FROM order_attributes
 
-    LEFT JOIN orders
+    LEFT JOIN orders_tbl
         USING (order_id)
 
 )
 
 SELECT * FROM final
-
