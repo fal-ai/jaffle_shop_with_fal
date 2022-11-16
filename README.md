@@ -8,7 +8,7 @@ So we decided to run a [clustering algorithm](https://github.com/fal-ai/jaffle_s
 
 The [fal](https://github.com/fal-ai/fal) + [dbt-fal](https://github.com/fal-ai/fal/tree/main/adapter) combination is the perfect tool for the task at hand:
 
-- Using the `dbt-fal` adapter, we can iterate on and ship our clustering algorithm written in Python with any datawarehouse **right within our dbt project.**
+- `dbt-fal` adapter lets us iterate on and ship our clustering algorithm. We wrote it as a Python models that works with any data warehouse **right within our dbt project.**
 
 - Using the `fal flow` CLI command, we can send a Slack notification to notify our team.
 
