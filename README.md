@@ -41,7 +41,7 @@ $ dbt seed
 
 ```bash
 $ dbt run
-## Runs the whole graph including the Python models
+## Runs the SQL models on the datawarehouse and Python models locally with fal
 ```
 
 2. Run `fal flow run` to execute the full graph including Python scripts. You can use the dbt [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/). With `fal flow run`, you will not have to run `dbt run` since fal handles the full execution.
