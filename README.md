@@ -1,5 +1,11 @@
 # jaffle_shop_with_fal
 
+<p align="center">
+  <a href="https://getdbt.slack.com/archives/C02V8QW3Q4Q">
+    <img src="https://badgen.net/badge/icon/%23tools-fal%20on%20dbt%20Slack/orange?icon=slack&label" alt="Slack channel" />
+  </a>&nbsp;
+</p>
+
 It is year 2 for our [jaffle shop](https://github.com/dbt-labs/jaffle_shop) and the shop owner started collecting advanced attributes about the [orders](https://github.com/fal-ai/jaffle_shop_with_fal/blob/main/seeds/raw_order_attributes.csv).
 
 We are tasked to understand what kind of jaffles we make the most money from.
