@@ -1,0 +1,13 @@
+environments:
+  - name: forecast
+    type: venv
+    requirements:
+      - prophet==1.1.1
+  - name: sftp
+    type: venv
+    requirements:
+      - sshfs==2022.6.0
+  - name: cluster
+    type: venv
+    requirements:
+      - kmodes==0.12.1
