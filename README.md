@@ -25,17 +25,40 @@ With this combo, you won't have to leave your dbt project and still add more cap
 1. Install `fal` and `dbt-fal`
 
 ```
-$ pip install fal dbt-fal[duckdb]
+$ pip install fal dbt-fal[postgres]
 # Add your favorite adapter here
 ```
 
-2. Install the data science libraries to run the clustering script.
+2. Specify the `fal` adapter in your `profiles.yml`:
+
+```yaml
+jaffle_shop:
+  target: fal_dev
+  outputs:
+    pg_dev:
+      type: postgres
+      host: localhost
+      port: 5432
+      user: pguser
+      password: pass
+      dbname: test
+      schema: public
+      threads: 4
+
+    fal_dev:
+      type: fal
+      db_profile: pg_dev # This points to the adapter to use for SQL-related tasks
+```
+
+With this profiles configuration, fal will run all the Python models and will leave the SQL models to the `db_profile`.
+
+3. Install the data science libraries to run the clustering script.
 
 ```
-$ pip install kmodes convertdate pystan prophet plotly kaleido
+$ pip install convertdate pystan prophet plotly kaleido
 ```
 
-3. Run dbt seed
+4. Seed the test data
 
 ```
 $ dbt seed
@@ -43,14 +66,14 @@ $ dbt seed
 
 ### Running Instructions:
 
-1. Run `dbt run`
+1. Run your dbt models
 
 ```bash
 $ dbt run
 ## Runs the SQL models on the datawarehouse and Python models locally with fal
 ```
 
-2. Run `fal flow run` to execute the full graph including Python scripts. You can use the dbt [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/). With `fal flow run`, you will not have to run `dbt run` since fal handles the full execution.
+2. Run `fal flow run` to execute the full graph including fal Python scripts. You can use the dbt [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/). With `fal flow run`, you will not have to run `dbt run` since fal handles the full execution.
 
 ```bash
 $ fal flow run
