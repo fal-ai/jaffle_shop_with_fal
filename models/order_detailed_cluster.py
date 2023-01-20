@@ -2,6 +2,11 @@ import pandas as pd
 from kmodes.kmodes import KModes
 
 def model(dbt, fal):
+    dbt.config({
+        # Look at `fal_project.yml` to see packages installed with this environment
+        "fal_environment": "clustering"
+    })
+
     df: pd.DataFrame = dbt.ref("order_detailed")
     df_train = df[["size", "is_vegan", "is_vegetarian", "is_keto", "shape"]]
 
