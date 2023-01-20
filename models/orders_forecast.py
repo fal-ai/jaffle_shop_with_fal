@@ -22,6 +22,7 @@ def make_forecast(dataframe: pd.DataFrame, periods: int = 30):
 
 def model(dbt, fal):
     dbt.config({
+        # Look at `fal_project.yml` to see packages installed with this environment
         "fal_environment": "forecasting"
     })
     df: pd.DataFrame = dbt.ref("orders_daily")

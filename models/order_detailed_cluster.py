@@ -3,6 +3,7 @@ from kmodes.kmodes import KModes
 
 def model(dbt, fal):
     dbt.config({
+        # Look at `fal_project.yml` to see packages installed with this environment
         "fal_environment": "clustering"
     })
 

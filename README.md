@@ -52,11 +52,9 @@ jaffle_shop:
 
 With this profiles configuration, fal will run all the Python models and will leave the SQL models to the `db_profile`.
 
-3. Install the data science libraries to run the clustering script.
+3. ~~Install the data science libraries to run the clustering script.~~
 
-```
-$ pip install convertdate pystan prophet plotly kaleido
-```
+We now use `fal_project.yml` to create isolated environments for Python models.
 
 4. Seed the test data
 
@@ -73,7 +71,9 @@ $ dbt run
 ## Runs the SQL models on the datawarehouse and Python models locally with fal
 ```
 
-2. Run `fal flow run` to execute the full graph including fal Python scripts. You can use the dbt [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/). With `fal flow run`, you will not have to run `dbt run` since fal handles the full execution.
+2. Run `fal flow run` to execute the full graph including fal Python scripts, that is the `fal_scripts/notify.py` script.
+You can use the dbt [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/).
+With `fal flow run`, you will not have to run `dbt run` since fal handles the full execution.
 
 ```bash
 $ fal flow run
