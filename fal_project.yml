@@ -1,10 +1,5 @@
 environments:
-  - name: clustering
+  - name: scikit
     type: venv
     requirements:
-      - kmodes==0.12.2
-
-  - name: forecasting
-    type: venv
-    requirements:
-      - prophet==1.0.1
+      - scikit-learn
