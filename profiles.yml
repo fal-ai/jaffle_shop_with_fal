@@ -1,0 +1,16 @@
+jaffle_shop:
+  target: fal_dev
+  outputs:
+    pg_dev:
+      type: postgres
+      host: localhost
+      port: 50432
+      user: pguser
+      password: pgsecret
+      dbname: jaffle_shop
+      schema: public
+      threads: 4
+
+    fal_dev:
+      type: fal
+      db_profile: pg_dev # This points to the adapter to use for SQL-related tasks

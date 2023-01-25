@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=pgsecret
+      - POSTGRES_DB=jaffle_shop
+    ports:
+      - '50432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    restart: always
+    environment:
+      - ADMINER_DESIGN=pepa-linha-dark
+    ports:
+      - 58080:8080
+
+volumes:
+  db:
+    driver: local

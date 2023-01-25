@@ -1,4 +1,4 @@
-# jaffle_shop_with_fal
+# Testing dbt + fal: `jaffle_shop_with_fal`
 
 <p align="center">
   <a href="https://getdbt.slack.com/archives/C02V8QW3Q4Q">
@@ -20,47 +20,43 @@ The [fal](https://github.com/fal-ai/fal) + [dbt-fal](https://github.com/fal-ai/f
 
 With this combo, you won't have to leave your dbt project and still add more capabilities to your stack.
 
+### Pre-requisites
+
+- [Install Docker](https://docs.docker.com/get-docker/). Check if the installation is ok with `docker --version`.
+  - **Note:** if you're on Linux, check the [post-install steps](https://docs.docker.com/engine/install/linux-postinstall/).
+- Make sure `dbt-core` is installed. Verify with `dbt --version`. If not, see [DBT Installation](https://docs.getdbt.com/docs/get-started/installation) for instructions.
+- **[Optional but recommended]** [Install `pyenv`](https://github.com/pyenv/pyenv) or an alternative to leverage isolated Python environments.
+
 ### Installing Instructions:
 
-1. Install `fal` and `dbt-fal`
+1. Install `fal`, `dbt-fal` and other dependencies
 
 ```
-$ pip install fal dbt-fal[postgres]
-# Add your favorite adapter here
+$ pip install -r requirements.txt
 ```
 
-2. Specify the `fal` adapter in your `profiles.yml`:
+2. Create the database
 
-```yaml
-jaffle_shop:
-  target: fal_dev
-  outputs:
-    pg_dev:
-      type: postgres
-      host: localhost
-      port: 5432
-      user: pguser
-      password: pass
-      dbname: test
-      schema: public
-      threads: 4
+To set up the environment using `docker-compose`, follow these steps:
 
-    fal_dev:
-      type: fal
-      db_profile: pg_dev # This points to the adapter to use for SQL-related tasks
+ - Install [`docker`](https://docs.docker.com/get-docker) and [`docker-compose`](https://docs.docker.com/compose/install) on your machine. 
+ - Navigate to the directory containing the docker-compose.yml file.
+ - Run `docker-compose up` to start the database.
+   - Note: If you want to run the container in background use `docker-compose up -d`
+
+```
+$ docker-compose up
 ```
 
-With this profiles configuration, fal will run all the Python models and will leave the SQL models to the `db_profile`.
+As a **bonus**, the stack includes adminer that can be used to browse the database and interact with the results. You can access it at `http://localhost:58080`.
 
-3. ~~Install the data science libraries to run the clustering script.~~
-
-We now use `fal_project.yml` to create isolated environments for Python models.
-
-4. Seed the test data
+3. Seed the test data
 
 ```
 $ dbt seed
 ```
+
+**Note:** As aforementioned, fal works with any dbt adapter. Although this example is ready for Postgres, feel free to play around with it and switch to your favorite dbt-supported database.
 
 ### Running Instructions:
 

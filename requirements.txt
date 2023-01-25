@@ -1,0 +1,4 @@
+dbt-fal[postgres]
+dbt-postgres
+fal
+slack_sdk
