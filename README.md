@@ -29,32 +29,37 @@ With this combo, you won't have to leave your dbt project and still add more cap
 
 ### Installing Instructions:
 
-1. Install `fal`, `dbt-fal` and other dependencies
+1. Install dependencies
 
-```
-$ pip install -r requirements.txt
-```
+    ```
+    $ pip install -r requirements.txt
+    ```
 
 2. Create the database
 
-To set up the environment using `docker-compose`, follow these steps:
+    #### Option 1: Docker
 
- - Install [`docker`](https://docs.docker.com/get-docker) and [`docker-compose`](https://docs.docker.com/compose/install) on your machine. 
- - Navigate to the directory containing the docker-compose.yml file.
- - Run `docker-compose up` to start the database.
-   - Note: If you want to run the container in background use `docker-compose up -d`
+    We provide a ready-to-use environment. To set up the environment using `docker-compose`, follow these steps:
 
-```
-$ docker-compose up
-```
+    - Install [`docker`](https://docs.docker.com/get-docker) and [`docker-compose`](https://docs.docker.com/compose/install) on your machine.
+    - Run `docker-compose up` to start the database.
+      - Note: If you want to run the container in background use `docker-compose up -d`.
 
-As a **bonus**, the stack includes adminer that can be used to browse the database and interact with the results. You can access it at `http://localhost:58080`.
+    ```
+    $ docker-compose up
+    ```
+
+    **Note:** the stack includes adminer, an admin interface for easy database browsing. You can access it at `http://localhost:58080`.
+
+    #### Option 2: Local database
+
+    If you want to bring your own database, make sure to update the connection settings on `profiles.yml` to match your database.
 
 3. Seed the test data
 
-```
-$ dbt seed
-```
+    ```
+    $ dbt seed
+    ```
 
 **Note:** As aforementioned, fal works with any dbt adapter. Although this example is ready for Postgres, feel free to play around with it and switch to your favorite dbt-supported database.
 
@@ -62,19 +67,19 @@ $ dbt seed
 
 1. Run your dbt models
 
-```bash
-$ dbt run
-## Runs the SQL models on the datawarehouse and Python models locally with fal
-```
+    ```bash
+    $ dbt run
+    ## Runs the SQL models on the datawarehouse and Python models locally with fal
+    ```
 
 2. Run `fal flow run` to execute the full graph including fal Python scripts, that is the `fal_scripts/notify.py` script.
 You can use the dbt [graph selectors](https://docs.getdbt.com/reference/node-selection/graph-operators) and [much more](https://docs.fal.ai/).
 With `fal flow run`, you will not have to run `dbt run` since fal handles the full execution.
 
-```bash
-$ fal flow run
-## Runs dbt run and the associated scripts, in this case a Slack notification is triggered
-```
+    ```bash
+    $ fal flow run
+    ## Runs dbt run and the associated scripts, in this case a Slack notification is triggered
+    ```
 
 ### Curious to learn more?
 
